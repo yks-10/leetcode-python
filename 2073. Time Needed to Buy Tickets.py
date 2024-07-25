@@ -1,15 +1,21 @@
 class Solution:
     def timeRequiredToBuy(self, tickets: list[int], k: int) -> int:
         result =0
-        while tickets[k]!=0:
-            for i in range(len(tickets)):
-                tickets[i]=tickets[i]-1
-                if tickets[k]==0:
-                    result=result+1
-                    break
-                result=result+1
+        temp = tickets[k]
+        for i in range(len(tickets)):
+            if i<k:
+                result = result+tickets[i]
+            else:
+                x = tickets[i]
+                if x== temp:
+                    result+=x
+                elif x<temp:
+                    result+=tickets[i]
+                else:
+                    result+=x
+
         return result
 
 x=Solution()
-print(x.timeRequiredToBuy([2,3,2],2))
+print(x.timeRequiredToBuy([5,1,1,1],0))
 
